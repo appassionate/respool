@@ -1,11 +1,11 @@
 # respool
-resource pool like ip proxy openai keys and etc...
+resource pool like ip_proxy openai_keys and etc...
 
 
 ## resource supporting 
 
-ipProxyPool: IP proxy
-openaiKeyPool: openai api key like ChatGPT 
+- ipProxyPool: IP proxy
+- openaiKeyPool: openai api key like ChatGPT 
 
 ## more feature
 
