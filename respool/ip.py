@@ -26,7 +26,7 @@ def is_ip_valid(ip:ipProxy, timeout=5):
     #sync version
     
     proxy = ip
-    #httpx验证代理资源
+    #httpx validate proxy resource
     try:
         if proxy.username and proxy.password:
             proxy_account = f"{proxy.username}:{proxy.password}@"
@@ -91,15 +91,9 @@ class ipProxyPool(BaseResourcePool):
         return ipProxyPool(_ips, validation=validation)
     
     def save_json(self, filename="ips.json"):
-        with open(filename, "w") as f:
-            f.write(json.dumps([ip.dict() for ip in self._resource]))
-
-    @classmethod
-    def from_json(self, filename="ips.json", validation=False):
-        
-        with open(filename, "r") as f:
-            ips = json.load(f)
-        return ipProxyPool(ips , validation=validation)
+        super().save_json(filename=filename)
+    def save_yaml(self, filename="ips.yaml"):
+        return super().save_yaml(filename)
     
     
     @staticmethod

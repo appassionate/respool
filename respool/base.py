@@ -3,15 +3,27 @@ from itertools import cycle, islice
 import random
 import tqdm
 import numpy as np
-from enum import Enum
 import asyncio
-
 import json
+from enum import Enum
 
-# 资源池 用于定义各项资源
+import yaml
+
+
+# iterator randomly?
 def random_iterator(iterable):
     while True:
         yield random.choice(iterable)
+
+
+def read_yaml(filename):
+    with open(filename, "r") as f:
+        return yaml.safe_load(f)
+    
+
+def save_yaml(data:dict, filename):
+    with open(filename, "w") as f:
+        yaml.dump(data, f)
 
 
 class ResourceStatus(Enum):
@@ -85,6 +97,7 @@ class BaseResourcePool(object):
     
     async def _validate_async(self):
         
+        # _validate_monomer_async是一个异步函数
         tasks = [await self._validate_monomer_async(ip) for ip in self._resource]
         
         return await asyncio.gather(*tasks)
@@ -100,6 +113,7 @@ class BaseResourcePool(object):
     def reload_data(self, data, validation=False):
         
         if validation:
+            print("validating... please wait")
             self._resource = [self.monomer_type(**_mono) for _mono in tqdm.tqdm(data) if self._validate_monomer(_mono)]
         else:
             self._resource = [self.monomer_type(**_mono) for _mono in data]
@@ -108,7 +122,6 @@ class BaseResourcePool(object):
     def save_json(self, filename="_data.json"):
         with open(filename, "w") as f:
             f.write(json.dumps([_mono.dict() for _mono in self._resource]))
-
     @classmethod
     def from_json(cls, filename="_data.json", validation=False):
         
@@ -117,3 +130,11 @@ class BaseResourcePool(object):
         return cls(_resource, validation=validation)
 
     
+    def save_yaml(self, filename="_data.yaml"):
+        save_yaml([_mono.dict() for _mono in self._resource], filename)
+    @classmethod
+    def from_yaml(cls, filename="_data.yaml", validation=False):
+        
+        _resource = read_yaml(filename)
+        return cls(_resource, validation=validation)
+        
