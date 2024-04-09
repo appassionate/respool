@@ -19,7 +19,7 @@ iter_cycle = pool.cycle()
 
 #cycle
 for i in range(666):
-    _key = next(iter_cycle).next
+    _key = next(iter_cycle).key
     print("current key is: ", _key)
 
 
