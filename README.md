@@ -2,7 +2,7 @@
 resource pool like ip_proxy openai_keys and etc...
 
 
-## small install guide
+## short installation
 ```
 git clone [address.git]
 pip install -e .
