@@ -28,12 +28,9 @@ for i in range(666):
 ```
 keys.yaml
 ```yaml
-- key: sk-1xxxxxxx
-- key: sk-2xxxxxxx
-- key: sk-3xxxxxxx
-- key: sk-4xxxxxxx
-- key: sk-5xxxxxxx
-- key: sk-6xxxxxxx
+- key:  sk-1xxxxxxx
+- key:  sk-2xxxxxxx
+  freq: 123
 ```
 
 
