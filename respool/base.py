@@ -17,14 +17,13 @@ def random_iterator(iterable):
 
 
 def read_yaml(filename):
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
     
 
-def save_yaml(data:dict, filename):
-    with open(filename, "w") as f:
-        yaml.dump(data, f)
-
+def save_yaml(data:dict, filename):         
+    with open(filename, "w", encoding="utf-8") as f:
+        yaml.dump(data, f, allow_unicode=True)
 
 class ResourceStatus(Enum):
     
