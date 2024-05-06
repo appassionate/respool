@@ -32,20 +32,21 @@ def is_openaikey_valid(openai_api_key) -> bool:
 
 async def is_openaikey_valid_async(openai_api_key) -> bool:
     
-    #TODO: 有问题 无法运行,  CURRENT cant run, need to fix
-
     if not openai_api_key:
         return False
     try:
         # how to use async openai client?
         # is there any limit check api in openai ?
-        await openai.AsyncClient(api_key=openai_api_key).completions.create(
+        async with openai.AsyncClient(api_key=openai_api_key) as client:
+            
+            response = await client.completions.create(
             model="gpt-3.5-turbo-instruct",
             prompt="say hello world."
-            )
-    
+            ) 
+            
     except Exception as e:
         return False
+    
     return True
 
 
