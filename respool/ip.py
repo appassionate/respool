@@ -9,6 +9,7 @@ import json
 
 VALIDATION_URL = "https://httpbin.org/ip"
 
+# monomer
 class ipProxy(BaseModel):
     
     protocol: str = Field(default="https://")
@@ -18,8 +19,6 @@ class ipProxy(BaseModel):
     password: Optional[str]=Field(default=None)
     
     status: ResourceStatus = "active"
-
-# monomer should be {protocol, address, port, username, password}
 
 
 def is_ip_valid(ip:ipProxy, timeout=5):
