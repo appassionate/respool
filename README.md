@@ -33,9 +33,9 @@ res = await pool._validate_async()
 ```
 
 
-#misc
-# pool._resource
-```
+### yaml example
+
+
 keys.yaml
 ```yaml
 - key:  sk-1xxxxxxx
