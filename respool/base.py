@@ -117,7 +117,6 @@ class BaseResourcePool(object):
         else:
             self._resource = [self.monomer_type(**_mono) for _mono in data]
 
-
     def save_json(self, filename="_data.json"):
         with open(filename, "w") as f:
             f.write(json.dumps([_mono.dict() for _mono in self._resource]))

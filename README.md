@@ -28,8 +28,12 @@ res = pool._validate()
 
 # async validation
 res = await pool._validate_async()
-
 # res == [True, True, False,...]
+
+#drop invalid resource
+pool = pool[res]
+
+
 ```
 
 
