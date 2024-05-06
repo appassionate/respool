@@ -23,6 +23,16 @@ for i in range(666):
     print("current key is: ", _key)
 
 
+# sync validation
+res = pool._validate()
+
+# async validation
+res = await pool._validate_async()
+
+# res == [True, True, False,...]
+```
+
+
 #misc
 # pool._resource
 ```
